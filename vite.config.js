@@ -15,6 +15,9 @@ export default defineConfig({
       '#store': resolve(dirname(fileURLToPath(import.meta.url)), 'src/store'),
       '#hoc': resolve(dirname(fileURLToPath(import.meta.url)), 'src/hoc'),
       '#windows': resolve(dirname(fileURLToPath(import.meta.url)), 'src/windows'),
-    }
-  }
+    },
+  },
+  server: {
+    allowedHosts: ['.trycloudflare.com', '.devtunnels.ms'], // el punto inicial permite cualquier subdominio
+  },
 })
