@@ -3,8 +3,8 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 
 const FONT_WEIGHTS = {
-    subtitle: {min: 100, max:400, default:500},
-    title: {min: 400, max:900, default:100},
+    subtitle: {min: 100, max:400, default:100},
+    title: {min: 400, max:900, default:400},
 }
 
 const renderText = (text, className, baseWeight = 400) => {
@@ -24,7 +24,7 @@ const setupTextHover = (container, type) => {
     const {min,max,default: base }=FONT_WEIGHTS[type];
 
     const animateLetter = (letter,weight,duration=0.25) => {
-        return gsap.to(letter, {duration, ease: 'power2.out',
+        return gsap.to(letter, {duration, ease: 'power2.out', overwrite: 'auto',
             fontVariationSettings: `'wght' ${weight}`,
         })
     }
@@ -74,7 +74,7 @@ const Welcome = () => {
         </h1>
 
         <div className="small-screen">
-            <p>This Portfolio is designed for desktop/tabled screens only.</p>
+            <p>This Portfolio is designed for desktop/tablet screens only.</p>
         </div>
     </section>
 
