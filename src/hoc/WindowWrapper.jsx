@@ -10,18 +10,28 @@ import { isMobileViewport } from '#lib/utils';
 const MIN_VISIBLE_WIDTH = 120;
 
 // La barra de título no puede pasar bajo la barra de menú ni bajo el Dock: se perderían sus botones
-const getDragBounds = (el, header) => {
-    const { left, top, width } = el.getBoundingClientRect();
-    const startLeft = left - gsap.getProperty(el, 'x');
-    const startTop = top - gsap.getProperty(el, 'y');
+const getDragBounds = (el) => {
+    // offset* no cambia con el arrastre ni con la escala de la animación
+    const { offsetLeft: startLeft, offsetTop: startTop, offsetWidth: width } = el;
     const dockTop = document.getElementById('dock').getBoundingClientRect().top;
 
     return {
         minX: MIN_VISIBLE_WIDTH - width - startLeft,
         maxX: window.innerWidth - MIN_VISIBLE_WIDTH - startLeft,
         minY: document.querySelector('nav').offsetHeight - startTop,
-        maxY: dockTop - header.offsetHeight - startTop,
+        maxY: dockTop - el.querySelector('#window-header').offsetHeight - startTop,
     };
+};
+
+// Si la pantalla se reduce, devuelve a la vista una ventana que haya quedado fuera
+const keepInBounds = (el) => {
+    if (el.classList.contains('maximized') || el.style.display === 'none' || !el.querySelector('#window-header')) return;
+
+    const { minX, maxX, minY, maxY } = getDragBounds(el);
+    gsap.set(el, {
+        x: gsap.utils.clamp(minX, maxX, gsap.getProperty(el, 'x')),
+        y: gsap.utils.clamp(minY, maxY, gsap.getProperty(el, 'y')),
+    });
 };
 
 const WindowWrapper = (Component, windowKey) => {
@@ -61,9 +71,11 @@ const WindowWrapper = (Component, windowKey) => {
             }
 
             el.style.display = 'block';
+            keepInBounds(el);
 
-            gsap.fromTo(el, { scale: 0.8, opacity: 0, yPercent: 0, y: 40, transformOrigin: '50% 50%' },
-                 { scale: 1, opacity: 1, y: 0, duration: 0.4, ease:"power3.out"})
+            // Sube con yPercent: y es la posición arrastrada y debe conservarse
+            gsap.fromTo(el, { scale: 0.8, opacity: 0, yPercent: 8, transformOrigin: '50% 50%' },
+                 { scale: 1, opacity: 1, yPercent: 0, duration: 0.4, ease:"power3.out"})
 
         }, [isOpen, isMinimized, isDesktop])
 
@@ -76,21 +88,28 @@ const WindowWrapper = (Component, windowKey) => {
            const trigger = ['resume', 'music', 'safari'].includes(windowKey) ? header : el;
            const [instance] = Draggable.create(el,{
                trigger,
+               // El orden lo lleva el store: el contador propio de GSAP hundía la ventana al pulsarla
+               zIndexBoost: false,
                onPress() {
-                   this.applyBounds(getDragBounds(el, header));
+                   this.applyBounds(getDragBounds(el));
                },
            })
            dragRef.current = instance;
 
-           // Doble clic en la barra de título: maximizar o restaurar, como en macOS
+           // Doble clic en la barra de título: maximizar o restaurar, como en macOS.
+           // Se escucha en la ventana porque las de archivo crean su cabecera al abrirse
            const onDoubleClick = (e) => {
-               if (e.target.closest('button, a, input, [role="button"]')) return;
+               if (!e.target.closest('#window-header') || e.target.closest('button, a, input, [role="button"]')) return;
                toggleMaximize(windowKey);
            };
-           header?.addEventListener('dblclick', onDoubleClick);
+           el.addEventListener('dblclick', onDoubleClick);
+
+           const onResize = () => keepInBounds(el);
+           window.addEventListener('resize', onResize);
 
            return () => {
-               header?.removeEventListener('dblclick', onDoubleClick);
+               el.removeEventListener('dblclick', onDoubleClick);
+               window.removeEventListener('resize', onResize);
                instance.kill();
            };
         },[isDesktop])
@@ -106,6 +125,7 @@ const WindowWrapper = (Component, windowKey) => {
                 drag?.disable();
             } else {
                 gsap.set(el, savedPosition.current);
+                keepInBounds(el);
                 drag?.enable();
             }
         }, [isMaximized, isDesktop])

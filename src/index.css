@@ -171,13 +171,61 @@ body {
     }
 
     > div:not(#window-header):not(.music-app) {
-      @apply h-[calc(100dvh-var(--window-header))]! max-h-none!;
+      @apply h-[calc(100dvh-var(--window-header))]! max-h-none! overflow-y-auto;
     }
   }
 
   #terminal.maximized,
-  #contact.maximized {
+  #contact.maximized,
+  #txtfile.maximized,
+  #imgfile.maximized {
     --window-header: 2.8125rem;
+  }
+
+  /* Tarjeta de contacto en el centro, con los enlaces repartidos a lo ancho */
+  #contact.maximized {
+    > div:not(#window-header) {
+      @apply flex flex-col items-center justify-center-safe gap-5 space-y-0! text-center;
+
+      > img {
+        @apply w-32!;
+      }
+    }
+
+    h3 {
+      @apply text-3xl;
+    }
+
+    ul {
+      @apply grid grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-4xl;
+
+      li {
+        @apply w-auto text-left;
+      }
+    }
+  }
+
+  /* Texto a una anchura cómoda de leer y foto limitada para que el texto se vea sin desplazarse tanto */
+  #txtfile.maximized > div:not(#window-header) {
+    @apply px-[max(1.25rem,calc((100%-48rem)/2))]!;
+
+    img {
+      @apply w-auto! max-w-full max-h-[50dvh] mx-auto;
+    }
+  }
+
+  #terminal.maximized .techstack {
+    @apply text-base px-[max(1.25rem,calc((100%-64rem)/2))];
+
+    /* Más ancho para que "DevOps & Cloud" no se parta con la letra más grande */
+    .label p:first-child,
+    .content li h3 {
+      @apply w-44!;
+    }
+  }
+
+  #resume.maximized .react-pdf__Page {
+    @apply mx-auto w-fit;
   }
 
   /* La barra de desplazamiento va al borde de la ventana y las publicaciones siguen centradas */
@@ -690,6 +738,15 @@ body {
 
       img {
         @apply w-full max-h-[calc(100dvh-20.5rem)] object-contain object-center;
+      }
+    }
+
+    /* En pantalla completa la imagen usa todo el alto disponible */
+    &.maximized .preview {
+      @apply flex items-center justify-center overflow-hidden;
+
+      img {
+        @apply size-full max-h-none;
       }
     }
   }

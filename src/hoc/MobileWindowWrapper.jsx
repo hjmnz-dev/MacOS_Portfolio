@@ -5,7 +5,9 @@ import { isMobileViewport } from "#lib/utils";
 const MobileWindowWrapper = (Component, windowKey) => {
   const Wrapped = (props) => {
     const { windows } = useWindowStore();
-    const { isOpen, zIndex } = windows[windowKey];
+    const { isOpen, isMinimized, zIndex } = windows[windowKey];
+    // Una ventana minimizada en escritorio sigue oculta aquí hasta tocarla en el Dock
+    const isVisible = isOpen && !isMinimized;
     const [isMobile, setIsMobile] = useState(() => isMobileViewport());
 
     useEffect(() => {
@@ -22,11 +24,11 @@ const MobileWindowWrapper = (Component, windowKey) => {
     useLayoutEffect(() => {
       const el = document.getElementById(`mobile-${windowKey}`);
       if (!el) return;
-      el.style.display = (isOpen && isMobile) ? "block" : "none";
-    }, [isOpen, isMobile]);
+      el.style.display = (isVisible && isMobile) ? "block" : "none";
+    }, [isVisible, isMobile]);
 
     // Don't render on desktop
-    if (!isMobile || !isOpen) return null;
+    if (!isMobile || !isVisible) return null;
 
     return (
       <section
