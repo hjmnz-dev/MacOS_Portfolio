@@ -6,6 +6,24 @@ import { Draggable } from 'gsap/all';
 import clsx from 'clsx';
 import { isMobileViewport } from '#lib/utils';
 
+// Parte de la ventana que siempre queda a la vista al arrastrarla hacia los lados
+const MIN_VISIBLE_WIDTH = 120;
+
+// La barra de título no puede pasar bajo la barra de menú ni bajo el Dock: se perderían sus botones
+const getDragBounds = (el, header) => {
+    const { left, top, width } = el.getBoundingClientRect();
+    const startLeft = left - gsap.getProperty(el, 'x');
+    const startTop = top - gsap.getProperty(el, 'y');
+    const dockTop = document.getElementById('dock').getBoundingClientRect().top;
+
+    return {
+        minX: MIN_VISIBLE_WIDTH - width - startLeft,
+        maxX: window.innerWidth - MIN_VISIBLE_WIDTH - startLeft,
+        minY: document.querySelector('nav').offsetHeight - startTop,
+        maxY: dockTop - header.offsetHeight - startTop,
+    };
+};
+
 const WindowWrapper = (Component, windowKey) => {
     const Wrapped = (props) => {
         const { focusWindow, toggleMaximize, windows } = useWindowStore();
@@ -56,7 +74,12 @@ const WindowWrapper = (Component, windowKey) => {
            // Estas ventanas tienen scroll o controles propios: se mueven solo desde su encabezado
            const header = el.querySelector('#window-header');
            const trigger = ['resume', 'music', 'safari'].includes(windowKey) ? header : el;
-           const [instance] = Draggable.create(el,{trigger})
+           const [instance] = Draggable.create(el,{
+               trigger,
+               onPress() {
+                   this.applyBounds(getDragBounds(el, header));
+               },
+           })
            dragRef.current = instance;
 
            // Doble clic en la barra de título: maximizar o restaurar, como en macOS

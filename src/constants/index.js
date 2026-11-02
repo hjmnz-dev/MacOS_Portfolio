@@ -454,8 +454,8 @@ export const musicTracks = [
 ];
 
 export const resumeFiles = {
-  en: { file: "files/resume-en.pdf", downloadName: "CV Hamsell Jimenez 2026 EN.pdf" },
-  es: { file: "files/resume-es.pdf", downloadName: "CV Hamsell Jimenez 2026 ES.pdf" },
+  en: { file: "/files/resume-en.pdf", downloadName: "CV Hamsell Jimenez 2026 EN.pdf" },
+  es: { file: "/files/resume-es.pdf", downloadName: "CV Hamsell Jimenez 2026 ES.pdf" },
 };
 
 const INITIAL_Z_INDEX = 1000;

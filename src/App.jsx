@@ -15,12 +15,11 @@ gsap.registerPlugin(Draggable);
 const App = () => {
   const windows = useWindowStore((state) => state.windows);
   const visibleWindows = Object.values(windows).filter(({ isOpen, isMinimized }) => isOpen && !isMinimized);
-  const hasMaximized = visibleWindows.some(({ isMaximized }) => isMaximized);
-  // Como en macOS, la barra y el Dock se ocultan solo si la ventana del frente está en pantalla completa
-  const isFullscreen = hasMaximized && visibleWindows.reduce((top, win) => (win.zIndex > top.zIndex ? win : top)).isMaximized;
+  const frontWindow = visibleWindows.reduce((top, win) => (!top || win.zIndex > top.zIndex ? win : top), null);
 
   return (
-    <main className={clsx(hasMaximized && "has-maximized", isFullscreen && "fullscreen")}>
+    // Como en macOS, la barra y el Dock se ocultan solo si la ventana del frente está en pantalla completa
+    <main className={clsx(frontWindow?.isMaximized && "fullscreen")}>
       <AnimatedWallpaper/>
       <Navbar/>
       <MobileNavbar/>

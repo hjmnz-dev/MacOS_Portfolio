@@ -71,7 +71,7 @@ body {
   }
 
   nav {
-    @apply flex justify-between items-center bg-white/50 dark:bg-dark-700/50 backdrop-blur-3xl p-2 px-5 select-none text-black dark:text-white max-sm:hidden;
+    @apply relative z-[10000] flex justify-between items-center bg-white/50 dark:bg-dark-700/50 backdrop-blur-3xl p-2 px-5 select-none text-black dark:text-white max-sm:hidden;
 
     div {
       @apply flex items-center gap-5;
@@ -106,7 +106,7 @@ body {
   }
 
   #dock {
-    @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none px-5 max-sm:w-full;
+    @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 sm:z-[10000] select-none px-5 max-sm:w-full;
 
     .dock-container {
       @apply bg-white/20 backdrop-blur-md justify-between max-sm:rounded-3xl rounded-2xl p-1.5 max-sm:px-3 flex items-end gap-1.5 max-sm:w-full;
@@ -195,16 +195,6 @@ body {
   }
 
   @variant sm {
-    main.has-maximized {
-      nav {
-        @apply fixed top-0 inset-x-0 z-[10000];
-      }
-
-      #dock {
-        @apply z-[10000];
-      }
-    }
-
     /* Pantalla completa como en macOS: la barra y el Dock aparecen al llevar el cursor al borde.
        Sus franjas invisibles quedan dentro de la pantalla aunque ellos estén ocultos */
     main.fullscreen {
@@ -258,7 +248,7 @@ body {
     }
 
     .blog {
-      @apply bg-white dark:bg-dark-700 p-10 max-w-3xl mx-auto max-h-[calc(100dvh-16rem)] overflow-y-auto;
+      @apply bg-white dark:bg-dark-700 p-10 max-w-3xl mx-auto max-h-[calc(100dvh-21rem)] overflow-y-auto dark:scheme-dark;
 
       h2 {
         @apply text-xl font-bold text-pink-600 mb-10;
@@ -549,7 +539,7 @@ body {
     }
 
     .resume-pdf {
-      @apply max-h-[80vh] overflow-y-auto dark:filter dark:invert dark:hue-rotate-180;
+      @apply max-h-[calc(100dvh-13rem)] overflow-y-auto dark:filter dark:invert dark:hue-rotate-180;
     }
   }
 
@@ -675,6 +665,11 @@ body {
     h2 {
       @apply font-bold text-sm text-center w-full;
     }
+
+    /* El texto largo se desplaza dentro de la ventana en lugar de salir de la pantalla */
+    > div:not(#window-header) {
+      @apply max-h-[calc(100dvh-18.5rem)] overflow-y-auto;
+    }
   }
 
   #mobile-txtfile {
@@ -691,10 +686,10 @@ body {
     }
 
     .preview {
-      @apply p-2 bg-gray-200 dark:bg-dark-700 max-h-[70vh];
+      @apply p-2 bg-gray-200 dark:bg-dark-700;
 
       img {
-        @apply w-full h-fit object-contain object-center;
+        @apply w-full max-h-[calc(100dvh-20.5rem)] object-contain object-center;
       }
     }
   }
@@ -757,7 +752,7 @@ body {
 
 @layer components {
   #music {
-    @apply absolute top-14 left-[max(1rem,calc(50%-28rem))] w-[min(56rem,calc(100vw-2rem))] h-[min(36rem,calc(100dvh-7rem))] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply absolute top-14 left-[max(1rem,calc(50%-28rem))] w-[min(56rem,calc(100vw-2rem))] h-[min(36rem,calc(100dvh-10rem))] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     #window-header {
       @apply h-13 bg-black border-none rounded-none;

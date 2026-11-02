@@ -17,7 +17,7 @@ const Finder = () => {
         if(item.fileType === 'pdf') return openWindow('resume');
         if(item.kind==='folder') return setActiveLocation(item);
         // Los proyectos aún no tienen enlace: sin href, estos archivos no abren nada
-        if(['fig','url'].includes(item.fileType)) return item.href && window.open(item.href, "_blank")
+        if(['fig','url'].includes(item.fileType)) return item.href && window.open(item.href, "_blank", "noopener,noreferrer")
 
         openWindow(`${item.fileType}${item.kind}`, item)
     }

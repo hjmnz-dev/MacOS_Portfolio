@@ -145,7 +145,9 @@ The result is a static site, so any static host works. No environment variables 
 npm run build
 ```
 
-Publish the `dist/` folder. On [Vercel](https://vercel.com) or [Netlify](https://www.netlify.com), import the repository, choose Vite as the framework and use `dist` as the output directory.
+Publish the `dist/` folder. On [Vercel](https://vercel.com) or [Netlify](https://www.netlify.com), import the repository, choose Vite as the framework and use `dist` as the output directory. Security headers are set in `vercel.json` and `public/_headers`.
+
+Do not expose `npm run dev` to the internet: the development server serves the source code.
 
 ## <a name="customization">🎨 Customization</a>
 

@@ -1,7 +1,9 @@
 import MobileWindowWrapper from "#hoc/MobileWindowWrapper";
 import MobileWindowHeader from "#components/mobile/WindowHeader";
+import ErrorBoundary from "#components/ErrorBoundary";
 import { resumeFiles } from "#constants";
 import useLanguageStore, { useTranslation } from "#store/language";
+import useWindowStore from "#store/window";
 import { Download } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useState, useRef, useLayoutEffect } from "react";
@@ -16,6 +18,7 @@ import "react-pdf/dist/Page/TextLayer.css";
 
 const MobileResumeContent = () => {
   const { language } = useLanguageStore();
+  const isOpen = useWindowStore((state) => state.windows.resume.isOpen);
   const t = useTranslation();
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -55,21 +58,26 @@ const MobileResumeContent = () => {
       </a>
 
       <div ref={containerRef} className="w-full">
-        <Document
-          className="resume-pdf"
-          file={file}
-          onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-        >
-          {Array.from({ length: numPages }, (_, i) => (
-            <Page
-              key={i}
-              pageNumber={i + 1}
-              width={containerWidth || undefined}
-              renderTextLayer
-              renderAnnotationLayer
-            />
-          ))}
-        </Document>
+        {/* El visor solo existe con la ventana abierta: al cargar la página no se pide el PDF */}
+        {isOpen && (
+          <ErrorBoundary key={file} fallback={<p className="p-10 text-center">{t("The resume could not be loaded.")}</p>}>
+            <Document
+              className="resume-pdf"
+              file={file}
+              onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+            >
+              {Array.from({ length: numPages }, (_, i) => (
+                <Page
+                  key={i}
+                  pageNumber={i + 1}
+                  width={containerWidth || undefined}
+                  renderTextLayer
+                  renderAnnotationLayer
+                />
+              ))}
+            </Document>
+          </ErrorBoundary>
+        )}
       </div>
     </>
   );
