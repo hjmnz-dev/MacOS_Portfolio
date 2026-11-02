@@ -1,8 +1,10 @@
 import { WindowControls } from "#components";
 import WindowWrapper from "#hoc/WindowWrapper";
 import useWindowStore from "#store/window";
+import { useTranslation } from "#store/language";
 
 const Image = () => {
+  const t = useTranslation();
   const { windows } = useWindowStore();
   const data = windows.imgfile.data;
 
@@ -13,11 +15,11 @@ const Image = () => {
   return <>
     <div id="window-header">
       <WindowControls target="imgfile" />
-      <p>{name}</p>
+      <p>{t(name)}</p>
     </div>
 
     <div className="preview">
-      {imageUrl && <img src={imageUrl} alt={name} />}
+      {imageUrl && <img src={imageUrl} alt={t(name)} />}
     </div>
   </>
 }

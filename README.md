@@ -1,16 +1,175 @@
-# React + Vite
+<div align="center">
+  <br />
+  <img src="public/readme/readme-hero.webp" alt="macOS Portfolio banner">
+  <br />
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  <div>
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+<img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+<img src="https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white" alt="GSAP" />
+<img src="https://img.shields.io/badge/Zustand-614A1F?style=for-the-badge&logo=zustand&logoColor=white" alt="Zustand" />
+  </div>
 
-Currently, two official plugins are available:
+  <h3 align="center">macOS Portfolio</h3>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+  <p align="center">My developer portfolio, built as a macOS desktop that runs in the browser, with a Caribbean touch from the Dominican Republic.</p>
+</div>
 
-## React Compiler
+## 📋 <a name="table">Table of Contents</a>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. ✨ [Introduction](#introduction)
+2. ⚙️ [Tech Stack](#tech-stack)
+3. 🔋 [Features](#features)
+4. 🗂️ [Project Structure](#project-structure)
+5. 🤸 [Quick Start](#quick-start)
+6. 🚀 [Deployment](#deployment)
+7. 🎨 [Customization](#customization)
+8. 🙌 [Credits](#credits)
+9. 📬 [Contact](#contact)
 
-## Expanding the ESLint configuration
+## <a name="introduction">✨ Introduction</a>
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Instead of a static resume page, this portfolio works like a small operating system. Visitors can browse my projects in Finder, read my latest LinkedIn posts in Safari, check my skills in Terminal, and view or download my resume in English or Spanish.
+
+On a phone, the same content becomes an iOS-style home screen with full-screen apps.
+
+It is a single-page React application with no backend of its own. Content lives in plain JavaScript files, and the LinkedIn feed comes from an embedded Elfsight widget.
+
+## <a name="tech-stack">⚙️ Tech Stack</a>
+
+- **[React 19](https://react.dev)** for the interface and components.
+- **[Vite 8](https://vite.dev)** for the development server and production build.
+- **[Tailwind CSS 4](https://tailwindcss.com)** for styling, dark mode and responsive variants.
+- **[GSAP](https://gsap.com)** for the Dock, window and welcome animations, and for dragging windows.
+- **[Zustand](https://zustand.docs.pmnd.rs)** with **[Immer](https://immerjs.github.io/immer)** for window, location, language and music state.
+- **WebGL** for the water animation on the wallpaper.
+- **[React PDF](https://github.com/wojtekmaj/react-pdf)** for the resume viewer.
+- **[Elfsight](https://elfsight.com/linkedin-feed-widget)** for the LinkedIn feed.
+- **[Radix UI](https://www.radix-ui.com)**, **[Lucide](https://lucide.dev)**, **[Day.js](https://day.js.org)** and **[React Tooltip](https://react-tooltip.com)** for the language menu, icons, menu bar date and Dock labels.
+
+## <a name="features">🔋 Features</a>
+
+👉 **Window Management**: Open, close, focus, drag and minimize windows, or use the green button or a double-click on the title bar for full screen.
+
+👉 **Full Screen**: As on a Mac, the window fills the screen, and the menu bar and Dock appear when the cursor reaches the screen edge.
+
+👉 **Magnifying Dock**: Icons grow with the cursor, and a dot marks open apps and playing music.
+
+👉 **Animated Wallpaper**: A WebGL shader moves the water of a Caribbean beach in a continuous loop, with a separate photo for portrait screens.
+
+👉 **Animated Welcome**: GSAP text animation that reacts to the cursor.
+
+👉 **Finder**: Browse projects, personal files, the resume and the trash.
+
+👉 **Safari**: Shows my 3 most recent LinkedIn posts, updated automatically.
+
+👉 **Music**: A Spotify-style player with 3 licensed tracks that keeps playing in the background.
+
+👉 **Photos**: A gallery that opens images in a preview window.
+
+👉 **Contact**: GitHub, WhatsApp, Gmail and LinkedIn links.
+
+👉 **Terminal**: My tech stack, shown as command output.
+
+👉 **Resume Viewer**: A PDF viewer with download that follows the selected language.
+
+👉 **English and Spanish**: Detects the browser language, and the menu bar switch translates the interface and changes the resume. Project and file names stay in English.
+
+👉 **Light and Dark Mode**: Switch from the menu bar.
+
+👉 **Mobile Experience**: An iOS-style layout for phones, including landscape.
+
+👉 **Reduced Motion**: The wallpaper stays still for visitors who prefer less animation, or if the browser has no WebGL.
+
+## <a name="project-structure">🗂️ Project Structure</a>
+
+```text
+public/
+├── files/            Resume PDFs (English and Spanish)
+├── icons/, images/   Icons, photos and wallpapers
+├── music/            Audio tracks
+└── readme/           README banner
+src/
+├── components/       Navbar, Dock, wallpaper, music player, language and theme
+│   ├── mobile/       iOS-style pieces
+│   └── ui/           Shared UI primitives
+├── constants/        Portfolio content and Spanish translations
+├── hoc/              WindowWrapper (desktop) and MobileWindowWrapper
+├── lib/              Helpers, including the mobile viewport check
+├── store/            Zustand stores: window, location, language and music
+└── windows/          One component per app
+    └── mobile/       Mobile version of each app
+```
+
+## <a name="quick-start">🤸 Quick Start</a>
+
+Follow these steps to set up the project locally on your machine.
+
+**Prerequisites**
+
+Make sure you have the following installed on your machine:
+
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/en) 20.19+ or 22.12+
+- [npm](https://www.npmjs.com/) (Node Package Manager)
+
+**Cloning the Repository**
+
+```bash
+git clone https://github.com/hjmnz-dev/MacOS_Portfolio.git
+cd MacOS_Portfolio
+```
+
+**Installation**
+
+Install the project dependencies using npm:
+
+```bash
+npm install
+```
+
+**Running the Project**
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser to view the project.
+
+## <a name="deployment">🚀 Deployment</a>
+
+The result is a static site, so any static host works. No environment variables are needed.
+
+```bash
+npm run build
+```
+
+Publish the `dist/` folder. On [Vercel](https://vercel.com) or [Netlify](https://www.netlify.com), import the repository, choose Vite as the framework and use `dist` as the output directory.
+
+## <a name="customization">🎨 Customization</a>
+
+| To change | Edit |
+| --- | --- |
+| Bio, tech stack and social links | `src/constants/index.js` |
+| Projects and files in Finder | `locations` in `src/constants/index.js` |
+| Gallery images | `gallery` in `src/constants/index.js` |
+| Music | `musicTracks` in `src/constants/index.js`, with the audio in `public/music/` |
+| LinkedIn feed | `linkedInFeed` in `src/constants/index.js` |
+| Resume | `public/files/`, referenced by `resumeFiles` in `src/constants/index.js` |
+| Spanish text | `src/constants/translations.js` |
+| Wallpaper | `public/images/` and `src/components/AnimatedWallpaper.jsx` |
+
+## <a name="credits">🙌 Credits</a>
+
+- **Base project and banner**: Built while following the [macOS-style Portfolio course](https://jsmastery.com/course/macos-style-portfolio-with-react-gsap-tailwindcss) by JS Mastery, then extended with my own features and content. The banner comes from that project.
+- **Wallpaper**: Generated with AI.
+- **Music**: "Gymnopedie No. 1", "Enchanted Valley", "Lobby Time" Kevin MacLeod ([incompetech.com](https://incompetech.com)). Licensed under Creative Commons: [By Attribution 4.0 License](http://creativecommons.org/licenses/by/4.0/).
+
+## <a name="contact">📬 Contact</a>
+
+**Hamsell Jiménez**
+
+- [GitHub](https://github.com/hjmnz-dev)
+- [LinkedIn](https://www.linkedin.com/in/hamselljimenez)
+- [hamselljimenez@gmail.com](mailto:hamselljimenez@gmail.com)

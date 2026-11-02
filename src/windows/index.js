@@ -6,5 +6,6 @@ import Text from "./Text.jsx";
 import Image from "./Image.jsx";
 import Contact from "./Contact.jsx";
 import Photos from "./Photos.jsx";
+import Music from "./Music.jsx";
 
-export {Terminal, Safari, Resume, Finder, Text, Image,Contact,Photos};
+export {Terminal, Safari, Resume, Finder, Text, Image,Contact,Photos,Music};
