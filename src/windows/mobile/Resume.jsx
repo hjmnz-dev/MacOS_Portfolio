@@ -64,6 +64,9 @@ const MobileResumeContent = () => {
             <Document
               className="resume-pdf"
               file={file}
+              suspense={false}
+              loading={t("Loading resume…")}
+              error={t("The resume could not be loaded.")}
               onLoadSuccess={({ numPages }) => setNumPages(numPages)}
             >
               {Array.from({ length: numPages }, (_, i) => (
