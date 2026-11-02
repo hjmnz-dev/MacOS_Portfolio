@@ -68,6 +68,7 @@ const es = {
 
   // CV y papelera
   "Download resume": "Descargar CV",
+  "The resume could not be loaded.": "No se pudo cargar el CV.",
 
   // Blog
   "My Developer Blog": "Mi blog de desarrollo",

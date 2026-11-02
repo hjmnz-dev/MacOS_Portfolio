@@ -43,7 +43,7 @@ const MobileFinderContent = () => {
       openWindow("resume");
     } else if (["fig", "url"].includes(item.fileType)) {
       // Los proyectos aún no tienen enlace: sin href, estos archivos no abren nada
-      if (item.href) window.open(item.href, "_blank");
+      if (item.href) window.open(item.href, "_blank", "noopener,noreferrer");
     } else {
       openWindow(`${item.fileType}${item.kind}`, item);
     }
