@@ -162,7 +162,6 @@ Publish the `dist/` folder. On [Vercel](https://vercel.com) or [Netlify](https:/
 
 ## <a name="credits">🙌 Credits</a>
 
-- **Base project and banner**: Built while following the [macOS-style Portfolio course](https://jsmastery.com/course/macos-style-portfolio-with-react-gsap-tailwindcss) by JS Mastery, then extended with my own features and content. The banner comes from that project.
 - **Wallpaper**: Generated with AI.
 - **Music**: "Gymnopedie No. 1", "Enchanted Valley", "Lobby Time" Kevin MacLeod ([incompetech.com](https://incompetech.com)). Licensed under Creative Commons: [By Attribution 4.0 License](http://creativecommons.org/licenses/by/4.0/).
 
