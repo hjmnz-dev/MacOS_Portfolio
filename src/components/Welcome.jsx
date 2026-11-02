@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
+import useLanguageStore, { useTranslation } from "#store/language"
 
 const FONT_WEIGHTS = {
     subtitle: {min: 100, max:400, default:100},
@@ -55,6 +56,8 @@ const setupTextHover = (container, type) => {
 }
 
 const Welcome = () => {
+    const { language } = useLanguageStore();
+    const t = useTranslation();
     const titleRef = useRef(null);
     const subtitleRef = useRef(null);
 
@@ -66,16 +69,12 @@ const Welcome = () => {
             subtitleCleanUp();
             titleCleanup();
         }
-    },[])
+    },[language])
     return <section id="welcome">
-        <p ref={subtitleRef}> {renderText("Hey, I'm Hamsell! Welcome to my", "text-3xl font-georama", 100)}</p>
-        <h1 ref={titleRef} className="mt-7">
-            {renderText("portfolio","text-9xl italic font-georama")}
+        <p key={`subtitle-${language}`} ref={subtitleRef}> {renderText(t("Hey, I'm Hamsell! Welcome to my"), "max-sm:text-2xl text-3xl font-georama", 100)}</p>
+        <h1 key={`title-${language}`} ref={titleRef} className="mt-7">
+            {renderText(t("Portfolio"),"max-sm:text-7xl text-9xl italic font-georama")}
         </h1>
-
-        <div className="small-screen">
-            <p>This Portfolio is designed for desktop/tablet screens only.</p>
-        </div>
     </section>
 
 }
