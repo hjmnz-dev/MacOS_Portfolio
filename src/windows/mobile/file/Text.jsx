@@ -1,0 +1,36 @@
+import MobileWindowWrapper from "#hoc/MobileWindowWrapper";
+import MobileWindowHeader from "#components/mobile/WindowHeader";
+import useWindowStore from "#store/window";
+import { useTranslation } from "#store/language";
+
+const MobileTextContent = () => {
+  const t = useTranslation();
+  const {
+    windows: {
+      txtfile: { data },
+    },
+  } = useWindowStore();
+
+  if (!data) return null;
+
+  const { name, image, subtitle, description } = data;
+
+  return (
+    <>
+      <MobileWindowHeader windowKey="txtfile" title={t("Preview")} />
+
+      <div className="px-5 pb-5 pt-10 space-y-7">
+        {image && <img src={image} alt={name} className="w-20 rounded-full" />}
+
+        {subtitle && <h1 className="font-bold">{t(subtitle)}</h1>}
+
+        {Array.isArray(description) &&
+          description.map((text, i) => <p key={i}>{t(text)}</p>)}
+      </div>
+    </>
+  );
+};
+
+const MobileText = MobileWindowWrapper(MobileTextContent, "txtfile");
+
+export default MobileText;

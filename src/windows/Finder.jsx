@@ -6,26 +6,29 @@ import useWindowStore from '#store/window'
 import clsx from 'clsx'
 import { Search } from 'lucide-react'
 import React from 'react'
+import { useTranslation } from "#store/language";
 
 const Finder = () => {
+  const t = useTranslation();
 
     const {openWindow} = useWindowStore();
     const { activeLocation, setActiveLocation } = useLocationStore();
     const openItem = (item)=>{
         if(item.fileType === 'pdf') return openWindow('resume');
         if(item.kind==='folder') return setActiveLocation(item);
-        if(['fig','url'].includes(item.fileType) && item.href) return window.open(item.href, "_blank")
+        // Los proyectos aún no tienen enlace: sin href, estos archivos no abren nada
+        if(['fig','url'].includes(item.fileType)) return item.href && window.open(item.href, "_blank")
 
         openWindow(`${item.fileType}${item.kind}`, item)
     }
     const renderList = (name, items) => (
         <div>
-            <h3>{name}</h3>
+            <h3>{t(name)}</h3>
             <ul>
                 {items.map((item) => (
                     <li key={item.id} onClick={() => setActiveLocation(item)} className={clsx(item.id == activeLocation.id ? 'active' : 'not-active')}>
                         <img src={item.icon} className='w-4' alt={item.name} />
-                        <p className='text-sm font-medium truncate'>{item.name}</p>
+                        <p className='text-sm font-medium truncate' title={item.name}>{item.name}</p>
                     </li>))}
             </ul>
         </div>
@@ -44,7 +47,7 @@ const Finder = () => {
             </div>
             <ul className='content'>
             {activeLocation?.children.map((item) => (
-                <li key={item.id} className={item.position} onClick={() => openItem(item)}>
+                <li key={item.id} onClick={() => openItem(item)}>
                     <img src={item.icon} alt={item.name}/>
                     <p>{item.name}</p>
                 </li>

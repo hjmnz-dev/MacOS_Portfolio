@@ -9,6 +9,7 @@ const useWindowStore = create(immer((set) => ({
     openWindow: (windowKey, data = null) => set((state) => {
         const win = state.windows[windowKey];
         win.isOpen = true;
+        win.isMinimized = false;
         win.zIndex = state.nextZIndex;
         win.data = data ?? win.data;
         state.nextZIndex++;
@@ -16,11 +17,27 @@ const useWindowStore = create(immer((set) => ({
     closeWindow: (windowKey) => set((state) => {
         const win = state.windows[windowKey];
         win.isOpen = false;
+        win.isMinimized = false;
+        win.isMaximized = false;
         win.zIndex = INITIAL_Z_INDEX;
         win.data = null;
     }),
     focusWindow: (windowKey) => set((state) => {
         const win = state.windows[windowKey];
+        win.zIndex = state.nextZIndex++;
+    }),
+    // Minimizada: sigue abierta (y su música sigue sonando) pero oculta hasta tocar el dock
+    minimizeWindow: (windowKey) => set((state) => {
+        state.windows[windowKey].isMinimized = true;
+    }),
+    restoreWindow: (windowKey) => set((state) => {
+        const win = state.windows[windowKey];
+        win.isMinimized = false;
+        win.zIndex = state.nextZIndex++;
+    }),
+    toggleMaximize: (windowKey) => set((state) => {
+        const win = state.windows[windowKey];
+        win.isMaximized = !win.isMaximized;
         win.zIndex = state.nextZIndex++;
     }),
 

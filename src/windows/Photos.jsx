@@ -3,10 +3,12 @@ import { gallery, photosLinks } from '#constants';
 import WindowWrapper from '#hoc/WindowWrapper';
 import useWindowStore from '#store/window.js';
 import { Mail, Search } from 'lucide-react';
+import { useTranslation } from "#store/language";
 
 
 const Photos = () => {
-  const openWindow = useWindowStore();
+  const t = useTranslation();
+  const { openWindow } = useWindowStore();
   return (
     <>
       <div id='window-header'>
@@ -20,12 +22,12 @@ const Photos = () => {
 
       <div className='flex w-full'>
         <div className='sidebar'>
-          <h2>Photos</h2>
+          <h2>{t("Photos")}</h2>
           <ul>
             {photosLinks.map(({ id, icon, title }) => (
               <li key={id}>
-                <img src={icon} alt={title} />
-                <p>{title}</p>
+                <img src={icon} alt={t(title)} />
+                <p>{t(title)}</p>
               </li>
 
             ))}
@@ -43,7 +45,7 @@ const Photos = () => {
                 fileType: "img",
                 imageUrl: img,
               })}>
-                <img src={img} alt={`Gallery image ${id}`} />
+                <img src={img} alt={`${t("Gallery image")} ${id}`} />
               </li>
             ))}
           </ul>

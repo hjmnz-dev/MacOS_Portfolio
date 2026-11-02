@@ -1,10 +1,12 @@
 import { WindowControls } from "#components"
-import { blogPosts } from "#constants";
+import LinkedInFeed from "#components/LinkedInFeed";
 import WindowWrapper from "#hoc/WindowWrapper"
-import { ChevronLeft, ChevronRight, Copy, MoveRight, PanelLeft, Plus, Search, Share, ShieldHalf } from "lucide-react";
+import { ChevronLeft, ChevronRight, Copy, PanelLeft, Plus, Search, Share, ShieldHalf } from "lucide-react";
 import React from 'react';
+import { useTranslation } from "#store/language";
 
 const Safari = () => {
+  const t = useTranslation();
   return <>
     <div id="window-header">
         <WindowControls target="safari"/>
@@ -20,7 +22,7 @@ const Safari = () => {
             <ShieldHalf className="icon"/>
             <div className="search">
                 <Search className="icon"/>
-                <input type="text" placeholder="Search or enter webiste name" className="flex-1"/>
+                <input type="text" placeholder={t("Search or enter website name")} className="flex-1"/>
             </div>
         </div>
 
@@ -32,25 +34,9 @@ const Safari = () => {
     </div>
 
     <div className="blog">
-        <h2>My Developer Blog</h2>
+        <h2>{t("My Developer Blog")}</h2>
 
-        <div className="space-y-8">
-           {blogPosts.map(({ id, image, title, date, link }) => (
-            <div key={id} className="blog-post">
-                <div className="col-span-2">
-                    <img src={image} alt={title}/>
-                </div>
-
-                <div className="content">
-                    <p>{date}</p>
-                    <h3>{title}</h3>
-                    <a href={link} target="_blank" rel="noopener noreferrer">
-                        Check out the full post <MoveRight className="icon-hover"/>
-                    </a>
-                </div>
-            </div>
-           ))}
-        </div>
+        <LinkedInFeed/>
     </div>
   </>
 }
