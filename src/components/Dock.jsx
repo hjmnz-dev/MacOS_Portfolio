@@ -4,9 +4,14 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import useWindowStore from "#store/window";
+import useMusicStore from "#store/music";
+import clsx from "clsx";
+import { useTranslation } from "#store/language";
 
 const Dock = () => {
-    const {openWindow,closeWindow,windows}=useWindowStore();
+  const t = useTranslation();
+    const {openWindow,restoreWindow,focusWindow,windows}=useWindowStore();
+    const isMusicPlaying = useMusicStore((state) => state.isPlaying);
     const dockRef = useRef(null);
 
     useGSAP(()=>{
@@ -64,23 +69,26 @@ const Dock = () => {
 
         const window = windows[app.id];
 
-        if(window.isOpen){
-            closeWindow(app.id);
-        }else{
+        // Como en macOS: abre, recupera si está minimizada o la trae al frente
+        if(!window.isOpen){
             openWindow(app.id);
+        }else if(window.isMinimized){
+            restoreWindow(app.id);
+        }else{
+            focusWindow(app.id);
         }
 
     }
 
   return <section id="dock">
     <div ref={dockRef} className="dock-container">
-        {dockApps.map(({id, name, icon, canOpen}) => (
-            <div key={id} className="relative flex justify-center">
+        {dockApps.map(({id, name, icon, canOpen, showOnMobile}) => (
+            <div key={id} className={clsx("relative flex justify-center", !showOnMobile && "max-sm:hidden")}>
                 <button type="button"
                 className="dock-icon"
-                aria-label={name}
+                aria-label={t(name)}
                 data-tooltip-id="dock-tooltip"
-                data-tooltip-content={name}
+                data-tooltip-content={t(name)}
                 data-tooltip-delay-show={150}
                 disabled={!canOpen}
                 onClick={(e) => {
@@ -89,10 +97,12 @@ const Dock = () => {
                     if(e.detail > 0) e.currentTarget.blur();
                 }}>
                     <img src={`/images/${icon}`}
-                     alt={name}
+                     alt={t(name)}
                      loading="lazy"
                      className={canOpen ? '':'opacity-60'}/>
                 </button>
+                {/* Punto bajo las apps abiertas; la música también sigue sonando con la ventana cerrada */}
+                {(windows[id]?.isOpen || (id === "music" && isMusicPlaying)) && <span className="absolute -bottom-1 size-1 rounded-full bg-white"/>}
             </div>
         ))}
         <Tooltip id="dock-tooltip" place="top" className="tooltip"/>

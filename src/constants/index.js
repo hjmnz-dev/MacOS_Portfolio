@@ -41,88 +41,69 @@ const dockApps = [
     name: "Portfolio", // was "Finder"
     icon: "finder.png",
     canOpen: true,
+    showOnMobile: true,
   },
   {
     id: "safari",
     name: "Articles", // was "Safari"
     icon: "safari.png",
     canOpen: true,
+    showOnMobile: true,
   },
   {
     id: "photos",
     name: "Gallery", // was "Photos"
     icon: "photos.png",
     canOpen: true,
+    showOnMobile: true,
   },
   {
     id: "contact",
     name: "Contact", // or "Get in touch"
     icon: "contact.png",
     canOpen: true,
+    showOnMobile: true,
+  },
+  {
+    id: "music",
+    name: "Music",
+    icon: "music.svg",
+    canOpen: true,
+    showOnMobile: true,
   },
   {
     id: "terminal",
     name: "Skills", // was "Terminal"
     icon: "terminal.png",
     canOpen: true,
-  },
-  {
-    id: "trash",
-    name: "Archive", // was "Trash"
-    icon: "trash.png",
-    canOpen: false,
-  },
-];
-
-const blogPosts = [
-  {
-    id: 1,
-    date: "Sep 2, 2025",
-    title:
-      "TypeScript Explained: What It Is, Why It Matters, and How to Master It",
-    image: "/images/blog1.png",
-    link: "https://jsmastery.com/blog/typescript-explained-what-it-is-why-it-matters-and-how-to-master-it",
-  },
-  {
-    id: 2,
-    date: "Aug 28, 2025",
-    title: "The Ultimate Guide to Mastering Three.js for 3D Development",
-    image: "/images/blog2.png",
-    link: "https://jsmastery.com/blog/the-ultimate-guide-to-mastering-three-js-for-3d-development",
-  },
-  {
-    id: 3,
-    date: "Aug 15, 2025",
-    title: "The Ultimate Guide to Mastering GSAP Animations",
-    image: "/images/blog3.png",
-    link: "https://jsmastery.com/blog/the-ultimate-guide-to-mastering-gsap-animations",
+    showOnMobile: false,
   },
 ];
 
 const techStack = [
   {
     category: "Frontend",
-    items: ["React.js", "Next.js", "TypeScript"],
-  },
-  {
-    category: "Mobile",
-    items: ["React Native", "Expo"],
-  },
-  {
-    category: "Styling",
-    items: ["Tailwind CSS", "Sass", "CSS"],
+    items: ["JavaScript", "React", "Angular", "Vue.js", "HTML", "CSS", "Tailwind CSS", "Bootstrap"],
   },
   {
     category: "Backend",
-    items: ["Node.js", "Express", "NestJS", "Hono"],
+    items: [".NET", "Node.js", "Express.js", "Python", "Django", "PHP", "Laravel"],
   },
   {
     category: "Database",
-    items: ["MongoDB", "PostgreSQL"],
+    items: ["SQL Server", "PostgreSQL", "MySQL", "MongoDB"],
   },
   {
-    category: "Dev Tools",
-    items: ["Git", "GitHub", "Docker"],
+    category: "Automation",
+    items: ["Power Apps", "Power Automate", "Power BI", "SharePoint", "Dataverse", "n8n"],
+  },
+  {
+    category: "DevOps & Cloud",
+    items: ["Azure", "Azure DevOps", "Git", "GitHub"],
+  },
+  {
+    category: "Methodologies",
+    items: ["Scrum", "Kanban", "Jira", "Trello"],
   },
 ];
 
@@ -132,28 +113,28 @@ const socials = [
     text: "Github",
     icon: "/icons/github.svg",
     bg: "#f4656b",
-    link: "https://github.com/JavaScript-Mastery-Pro",
+    link: "https://github.com/hjmnz-dev",
   },
   {
     id: 2,
-    text: "Platform",
-    icon: "/icons/atom.svg",
-    bg: "#4bcb63",
-    link: "https://jsmastery.com/",
+    text: "WhatsApp",
+    icon: "/icons/whatsapp.svg",
+    bg: "#25d366",
+    link: "https://wa.me/18292884007",
   },
   {
     id: 3,
-    text: "Twitter/X",
-    icon: "/icons/twitter.svg",
-    bg: "#ff866b",
-    link: "https://x.com/jsmasterypro",
+    text: "Gmail",
+    icon: "/icons/gmail.svg",
+    bg: "#ea4335",
+    link: "mailto:hamselljimenez@gmail.com",
   },
   {
     id: 4,
     text: "LinkedIn",
     icon: "/icons/linkedin.svg",
     bg: "#05b6f6",
-    link: "https://www.linkedin.com/company/javascriptmastery/posts/?feedView=all",
+    link: "https://www.linkedin.com/in/hamselljimenez",
   },
 ];
 
@@ -188,19 +169,19 @@ const photosLinks = [
 const gallery = [
   {
     id: 1,
-    img: "/images/gal1.png",
+    img: "/images/gallery-keynote.jpg",
   },
   {
     id: 2,
-    img: "/images/gal2.png",
+    img: "/images/gallery-selfie.jpg",
   },
   {
     id: 3,
-    img: "/images/gal3.png",
+    img: "/images/gallery-letters.jpg",
   },
   {
     id: 4,
-    img: "/images/gal4.png",
+    img: "/images/gallery-badge.jpg",
   },
 ];
 
@@ -208,7 +189,6 @@ export {
   navLinks,
   navIcons,
   dockApps,
-  blogPosts,
   techStack,
   socials,
   photosLinks,
@@ -228,8 +208,6 @@ const WORK_LOCATION = {
       name: "Nike Ecommerce Website Application",
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-10 left-5", // icon position inside Finder
-      windowPosition: "top-[5vh] left-5", // optional: Finder window position
       children: [
         {
           id: 1,
@@ -237,7 +215,6 @@ const WORK_LOCATION = {
           icon: "/images/txt.png",
           kind: "file",
           fileType: "txt",
-          position: "top-5 left-10",
           description: [
             "The Nike eCommerce website is a sleek and modern platform designed for shopping the latest Nike collections.",
             "Instead of a simple online store, it delivers an immersive experience with bold visuals, interactive product displays, and smooth navigation.",
@@ -251,8 +228,6 @@ const WORK_LOCATION = {
           icon: "/images/safari.png",
           kind: "file",
           fileType: "url",
-          href: "https://youtu.be/fZdTYswuZjU?si=Awjl-pIst9e09_UU",
-          position: "top-10 right-20",
         },
         {
           id: 4,
@@ -260,7 +235,6 @@ const WORK_LOCATION = {
           icon: "/images/image.png",
           kind: "file",
           fileType: "img",
-          position: "top-52 right-80",
           imageUrl: "/images/project-1.png",
         },
         {
@@ -269,8 +243,6 @@ const WORK_LOCATION = {
           icon: "/images/plain.png",
           kind: "file",
           fileType: "fig",
-          href: "https://google.com",
-          position: "top-60 right-20",
         },
       ],
     },
@@ -281,8 +253,6 @@ const WORK_LOCATION = {
       name: "AI Resume Analyzer",
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-52 right-80",
-      windowPosition: "top-[20vh] left-7",
       children: [
         {
           id: 1,
@@ -290,7 +260,6 @@ const WORK_LOCATION = {
           icon: "/images/txt.png",
           kind: "file",
           fileType: "txt",
-          position: "top-5 right-10",
           description: [
             "AI Resume Analyzer is a smart tool that helps you perfect your resume with instant feedback.",
             "Instead of guessing what recruiters want, you get AI-powered insights on keywords, formatting, and overall impact.",
@@ -304,8 +273,6 @@ const WORK_LOCATION = {
           icon: "/images/safari.png",
           kind: "file",
           fileType: "url",
-          href: "https://youtu.be/iYOz165wGkQ?si=R1hs8Legl200m0Cl",
-          position: "top-20 left-20",
         },
         {
           id: 4,
@@ -313,7 +280,6 @@ const WORK_LOCATION = {
           icon: "/images/image.png",
           kind: "file",
           fileType: "img",
-          position: "top-52 left-80",
           imageUrl: "/images/project-2.png",
         },
         {
@@ -322,8 +288,6 @@ const WORK_LOCATION = {
           icon: "/images/plain.png",
           kind: "file",
           fileType: "fig",
-          href: "https://google.com",
-          position: "top-60 left-5",
         },
       ],
     },
@@ -334,8 +298,6 @@ const WORK_LOCATION = {
       name: "Food Delivery App",
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-10 left-80",
-      windowPosition: "top-[33vh] left-7",
       children: [
         {
           id: 1,
@@ -343,7 +305,6 @@ const WORK_LOCATION = {
           icon: "/images/txt.png",
           kind: "file",
           fileType: "txt",
-          position: "top-5 left-10",
           description: [
             "Our Food Delivery App is a fast and convenient way to order meals from your favorite restaurants.",
             "Instead of making calls or waiting in line, you can browse menus, customize orders, and track deliveries in real time.",
@@ -357,8 +318,6 @@ const WORK_LOCATION = {
           icon: "/images/safari.png",
           kind: "file",
           fileType: "url",
-          href: "https://youtu.be/LKrX390fJMw?si=cExkuVhf2DTV9G2-",
-          position: "top-10 right-20",
         },
         {
           id: 4,
@@ -366,7 +325,6 @@ const WORK_LOCATION = {
           icon: "/images/image.png",
           kind: "file",
           fileType: "img",
-          position: "top-52 right-80",
           imageUrl: "/images/project-3.png",
         },
         {
@@ -375,8 +333,6 @@ const WORK_LOCATION = {
           icon: "/images/plain.png",
           kind: "file",
           fileType: "fig",
-          href: "https://google.com",
-          position: "top-60 right-20",
         },
       ],
     },
@@ -396,8 +352,7 @@ const ABOUT_LOCATION = {
       icon: "/images/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-10 left-5",
-      imageUrl: "/images/adrian.jpg",
+      imageUrl: "/images/hamsell.jpg",
     },
     {
       id: 2,
@@ -405,8 +360,7 @@ const ABOUT_LOCATION = {
       icon: "/images/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-28 right-72",
-      imageUrl: "/images/adrian-2.jpg",
+      imageUrl: "/images/gallery-selfie.jpg",
     },
     {
       id: 3,
@@ -414,8 +368,7 @@ const ABOUT_LOCATION = {
       icon: "/images/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-52 left-80",
-      imageUrl: "/images/adrian-3.jpeg",
+      imageUrl: "/images/gallery-keynote.jpg",
     },
     {
       id: 4,
@@ -423,14 +376,13 @@ const ABOUT_LOCATION = {
       icon: "/images/txt.png",
       kind: "file",
       fileType: "txt",
-      position: "top-60 left-5",
       subtitle: "Meet the Developer Behind the Code",
-      image: "/images/adrian.jpg",
+      image: "/images/hamsell.jpg",
       description: [
-        "Hey! I’m Adrian 👋, a web developer who enjoys building sleek, interactive websites that actually work well.",
-        "I specialize in JavaScript, React, and Next.js—and I love making things feel smooth, fast, and just a little bit delightful.",
-        "I’m big on clean UI, good UX, and writing code that doesn’t need a search party to debug.",
-        "Outside of dev work, you'll find me tweaking layouts at 2AM, sipping overpriced coffee, or impulse-buying gadgets I absolutely convinced myself I needed 😅",
+        "Hey! I’m Hamsell 👋, a Software Developer from Santo Domingo, Dominican Republic, focused on building practical solutions that streamline processes and deliver real business value.",
+        "I work with JavaScript and .NET to develop reliable applications, automate workflows, and create enterprise solutions using Power Platform (Power Apps, Power Automate, and Power BI).",
+        "Since June 2024 I’ve been a DevOps Analyst at Seaboard Transcontinental Capital Corporation, where I design, develop, and support web applications and automated solutions.",
+        "I hold an Associate Degree in Software Development from ITLA and I’m currently pursuing a Bachelor’s in Software Engineering at INTEC. I also have a genuine interest in AI as a tool to improve efficiency, data analysis, and decision-making.",
       ],
     },
   ],
@@ -468,7 +420,6 @@ const TRASH_LOCATION = {
       icon: "/images/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-10 left-10",
       imageUrl: "/images/trash-1.png",
     },
     {
@@ -477,7 +428,6 @@ const TRASH_LOCATION = {
       icon: "/images/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-40 left-80",
       imageUrl: "/images/trash-2.png",
     },
   ],
@@ -488,6 +438,24 @@ export const locations = {
   about: ABOUT_LOCATION,
   resume: RESUME_LOCATION,
   trash: TRASH_LOCATION,
+};
+
+// Pega aquí el ID de tu widget (lo que sigue a "elfsight-app-" en su código de instalación)
+export const linkedInFeed = {
+  elfsightWidgetId: "671f56cf-5148-4e83-aec9-90180cdaf9fc",
+  elfsightScriptUrl: "https://elfsightcdn.com/platform.js",
+  profileUrl: "https://www.linkedin.com/in/hamselljimenez",
+};
+
+export const musicTracks = [
+  { id: 1, title: "Gymnopedie No. 1", src: "/music/gymnopedie-no-1.mp3", color: "#e8a33d" },
+  { id: 2, title: "Enchanted Valley", src: "/music/enchanted-valley.mp3", color: "#7c6cf0" },
+  { id: 3, title: "Lobby Time", src: "/music/lobby-time.mp3", color: "#e0526f" },
+];
+
+export const resumeFiles = {
+  en: { file: "files/resume-en.pdf", downloadName: "CV Hamsell Jimenez 2026 EN.pdf" },
+  es: { file: "files/resume-es.pdf", downloadName: "CV Hamsell Jimenez 2026 ES.pdf" },
 };
 
 const INITIAL_Z_INDEX = 1000;
@@ -501,6 +469,7 @@ const WINDOW_CONFIG = {
   terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  music: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };
