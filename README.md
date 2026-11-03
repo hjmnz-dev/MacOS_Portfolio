@@ -13,6 +13,8 @@
 
   <h3 align="center">macOS Portfolio</h3>
 
+  <p align="center"><a href="https://hamselljimenez.dev">hamselljimenez.dev</a></p>
+
   <p align="center">My developer portfolio, built as a macOS desktop that runs in the browser, with a Caribbean touch from the Dominican Republic.</p>
 </div>
 
@@ -139,7 +141,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser to view the 
 
 ## <a name="deployment">🚀 Deployment</a>
 
-The site is hosted on [Cloudflare Pages](https://pages.cloudflare.com), connected to this repository:
+The site is live at [hamselljimenez.dev](https://hamselljimenez.dev), hosted on [Cloudflare Pages](https://pages.cloudflare.com) and connected to this repository:
 
 - Every push to `main` builds and publishes the site.
 - Every other branch gets its own preview URL.
