@@ -13,6 +13,8 @@
 
   <h3 align="center">macOS Portfolio</h3>
 
+  <p align="center"><a href="https://hamselljimenez.dev">hamselljimenez.dev</a></p>
+
   <p align="center">My developer portfolio, built as a macOS desktop that runs in the browser, with a Caribbean touch from the Dominican Republic.</p>
 </div>
 
@@ -139,15 +141,19 @@ Open [http://localhost:5173](http://localhost:5173) in your browser to view the 
 
 ## <a name="deployment">🚀 Deployment</a>
 
-The result is a static site, so any static host works. No environment variables are needed.
+The site is live at [hamselljimenez.dev](https://hamselljimenez.dev), hosted on [Cloudflare Pages](https://pages.cloudflare.com) and connected to this repository:
 
-```bash
-npm run build
-```
+- Every push to `main` builds and publishes the site.
+- Every other branch gets its own preview URL.
+- If a build fails, the last working version stays online.
 
-Publish the `dist/` folder. On [Vercel](https://vercel.com) or [Netlify](https://www.netlify.com), import the repository, choose Vite as the framework and use `dist` as the output directory. Security headers are set in `vercel.json` and `public/_headers`.
+| Setting | Value |
+| --- | --- |
+| Build command | `npm run build` |
+| Output directory | `dist` |
+| Security headers | `public/_headers` |
 
-Do not expose `npm run dev` to the internet: the development server serves the source code.
+No environment variables are needed. Do not expose `npm run dev` to the internet: the development server serves the source code.
 
 ## <a name="customization">🎨 Customization</a>
 
