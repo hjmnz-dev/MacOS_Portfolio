@@ -5,16 +5,15 @@ import { resumeFiles } from "#constants";
 import useLanguageStore, { useTranslation } from "#store/language";
 import useWindowStore from "#store/window";
 import { Download } from "lucide-react";
-import { Document, Page, pdfjs } from "react-pdf";
+import { Document, Page } from "react-pdf";
+import "#lib/resume";
 import { useState, useRef, useLayoutEffect } from "react";
-
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url
-).toString();
 
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
+
+// Más nitidez no se aprecia en un teléfono y cuesta mucho más dibujarla
+const MAX_PIXEL_RATIO = 2;
 
 const MobileResumeContent = () => {
   const { language } = useLanguageStore();
@@ -59,7 +58,7 @@ const MobileResumeContent = () => {
 
       <div ref={containerRef} className="w-full">
         {/* El visor solo existe con la ventana abierta: al cargar la página no se pide el PDF */}
-        {isOpen && (
+        {isOpen && containerWidth > 0 && (
           <ErrorBoundary key={file} fallback={<p className="p-10 text-center">{t("The resume could not be loaded.")}</p>}>
             <Document
               className="resume-pdf"
@@ -73,8 +72,9 @@ const MobileResumeContent = () => {
                 <Page
                   key={i}
                   pageNumber={i + 1}
-                  width={containerWidth || undefined}
-                  renderTextLayer
+                  width={containerWidth}
+                  devicePixelRatio={Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO)}
+                  renderTextLayer={false}
                   renderAnnotationLayer
                 />
               ))}

@@ -6,14 +6,11 @@ import useLanguageStore, { useTranslation } from "#store/language";
 import useWindowStore from "#store/window";
 import { DownloadIcon } from "lucide-react";
 import { useState } from "react";
-import {Document, Page, pdfjs } from "react-pdf";
+import {Document, Page } from "react-pdf";
+import "#lib/resume";
 
 import "react-pdf/dist/Page/AnnotationLayer.css"
 import "react-pdf/dist/Page/TextLayer.css"
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.min.mjs',
-    import.meta.url
-).toString()
 
 const Resume = () => {
   const { language } = useLanguageStore();

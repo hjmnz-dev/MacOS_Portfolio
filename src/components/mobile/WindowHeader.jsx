@@ -19,12 +19,14 @@ const MobileWindowHeader = ({ windowKey, title, onBack, className = "" }) => {
     <div
       id="mobile-window-header"
       className={clsx(
-        "flex justify-between items-center gap-5 px-3 pb-3 relative z-10",
+        // Fija bajo la barra de estado para que "Volver" siga a mano al desplazarse.
+        // El tope se mide desde el relleno de la ventana (pt-20 o pt-13): el valor negativo lo sube hasta la barra
+        "flex justify-between items-center gap-5 px-3 sticky -top-4 short:-top-4.5 z-10 bg-inherit",
         className
       )}
     >
       <div
-        className="flex-1 flex items-center gap-2 cursor-pointer"
+        className="flex-1 flex items-center gap-2 min-h-12 cursor-pointer"
         onClick={handleBack}
       >
         <ChevronLeft className="icon" />

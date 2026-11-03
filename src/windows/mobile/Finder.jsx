@@ -13,6 +13,8 @@ const MobileFinderContent = () => {
   const [breadcrumb, setBreadcrumb] = useState([]);
 
   const rootFolders = Object.values(locations);
+  // Solo las carpetas principales (las que tienen type) siguen el idioma; proyectos y archivos no
+  const itemName = (item) => (item.type ? t(item.name) : item.name);
 
   const handleFolderClick = (folder) => {
     setCurrentFolder(folder);
@@ -55,7 +57,7 @@ const MobileFinderContent = () => {
     <>
       <MobileWindowHeader
         windowKey="finder"
-        title={currentFolder?.name || t("Portfolio")}
+        title={currentFolder ? itemName(currentFolder) : t("Portfolio")}
         onBack={handleBackClick}
       />
 
@@ -81,7 +83,7 @@ const MobileFinderContent = () => {
                 }}
                 className="text-blue-500 text-sm line-clamp-1 text-left"
               >
-                {folder.name}
+                {itemName(folder)}
               </button>
             </span>
           ))}
@@ -100,9 +102,9 @@ const MobileFinderContent = () => {
                     className="size-16"
                   />
                 ) : (
-                  <img src={item.icon} alt={item.name} className="file-icon" />
+                  <img src={item.icon} alt={itemName(item)} className="file-icon" />
                 )}
-                <p className="item-name">{item.name}</p>
+                <p className="item-name">{itemName(item)}</p>
               </div>
             </li>
           ))}
