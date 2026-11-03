@@ -13,6 +13,8 @@ const Finder = () => {
 
     const {openWindow} = useWindowStore();
     const { activeLocation, setActiveLocation } = useLocationStore();
+    // Solo las carpetas principales (las que tienen type) siguen el idioma; proyectos y archivos no
+    const itemName = (item) => item.type ? t(item.name) : item.name;
     const openItem = (item)=>{
         if(item.fileType === 'pdf') return openWindow('resume');
         if(item.kind==='folder') return setActiveLocation(item);
@@ -27,8 +29,8 @@ const Finder = () => {
             <ul>
                 {items.map((item) => (
                     <li key={item.id} onClick={() => setActiveLocation(item)} className={clsx(item.id == activeLocation.id ? 'active' : 'not-active')}>
-                        <img src={item.icon} className='w-4' alt={item.name} />
-                        <p className='text-sm font-medium truncate' title={item.name}>{item.name}</p>
+                        <img src={item.icon} className='w-4' alt={itemName(item)} />
+                        <p className='text-sm font-medium truncate' title={itemName(item)}>{itemName(item)}</p>
                     </li>))}
             </ul>
         </div>

@@ -74,7 +74,7 @@ It is a single-page React application with no backend of its own. Content lives 
 
 👉 **Resume Viewer**: A PDF viewer with download that follows the selected language.
 
-👉 **English and Spanish**: Detects the browser language, and the menu bar switch translates the interface and changes the resume. Project and file names stay in English.
+👉 **English and Spanish**: Detects the browser language, and the menu bar switch translates the interface and changes the resume. Main Finder folders are translated too, while project and file names keep their original language.
 
 👉 **Light and Dark Mode**: Switch from the menu bar.
 
