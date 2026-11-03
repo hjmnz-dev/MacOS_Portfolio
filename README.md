@@ -141,17 +141,17 @@ Open [http://localhost:5173](http://localhost:5173) in your browser to view the 
 
 The site is hosted on [Cloudflare Pages](https://pages.cloudflare.com), connected to this repository:
 
-- Every push to  builds and publishes the site.
+- Every push to `main` builds and publishes the site.
 - Every other branch gets its own preview URL.
 - If a build fails, the last working version stays online.
 
 | Setting | Value |
 | --- | --- |
-| Build command |  |
-| Output directory |  |
-| Security headers |  |
+| Build command | `npm run build` |
+| Output directory | `dist` |
+| Security headers | `public/_headers` |
 
-No environment variables are needed. Do not expose  to the internet: the development server serves the source code.
+No environment variables are needed. Do not expose `npm run dev` to the internet: the development server serves the source code.
 
 ## <a name="customization">🎨 Customization</a>
 
