@@ -9,10 +9,12 @@ const MobileHome = () => {
     <section id="mobile-home">
       <ul>
         <li onClick={() => openWindow("resume")}>
-          <img src="/images/pages.png" alt={t("Resume")} />
+          <img src="/images/pages.png" alt="" />
+          <p>{t("Resume")}</p>
         </li>
         <li onClick={() => openWindow("terminal")}>
-          <img src="/images/terminal.png" alt="terminal" />
+          <img src="/images/terminal.png" alt="" />
+          <p>{t("Skills")}</p>
         </li>
       </ul>
     </section>

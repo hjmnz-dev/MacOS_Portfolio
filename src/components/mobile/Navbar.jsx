@@ -7,7 +7,7 @@ import Language from "#components/Language";
 const MobileNavbar = () => {
   const { windows } = useWindowStore();
   // El wallpaper y el reproductor siempre son oscuros: ahí la barra va en blanco
-  const openWindows = Object.entries(windows).filter(([, win]) => win.isOpen);
+  const openWindows = Object.entries(windows).filter(([, win]) => win.isOpen && !win.isMinimized);
   const [topWindow] = openWindows.reduce(
     (top, entry) => (entry[1].zIndex > top[1].zIndex ? entry : top),
     openWindows[0] ?? []
@@ -19,7 +19,9 @@ const MobileNavbar = () => {
       id="mobile-navbar"
       className={clsx(
         "flex justify-between items-center py-3 short:py-1 px-5 gap-5 sm:hidden relative z-10000",
-        isOverDark && "text-white"
+        isOverDark && "text-white",
+        // Con una ventana abierta es opaca: el contenido pasa por debajo al desplazarse
+        topWindow && (topWindow === "music" ? "bg-[#121212]" : "bg-white dark:bg-dark-700")
       )}
     >
       <time>{dayjs().format("h:mm A")}</time>

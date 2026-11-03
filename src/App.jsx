@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import gsap from "gsap";
 import { Draggable } from 'gsap/all'
 import clsx from "clsx";
@@ -9,11 +10,18 @@ import Home from "#components/Home";
 import AnimatedWallpaper from "#components/AnimatedWallpaper";
 import MobileHome from "#components/mobile/Home";
 import useWindowStore from "#store/window";
+import useLanguageStore from "#store/language";
+import { resumeFiles } from "#constants";
+import { preloadResume } from "#lib/resume";
 
 gsap.registerPlugin(Draggable);
 
 const App = () => {
   const windows = useWindowStore((state) => state.windows);
+  const language = useLanguageStore((state) => state.language);
+
+  useEffect(() => preloadResume(resumeFiles[language].file), [language]);
+
   const visibleWindows = Object.values(windows).filter(({ isOpen, isMinimized }) => isOpen && !isMinimized);
   const frontWindow = visibleWindows.reduce((top, win) => (!top || win.zIndex > top.zIndex ? win : top), null);
 
