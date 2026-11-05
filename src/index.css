@@ -70,10 +70,8 @@ body {
     @apply relative isolate w-dvw h-dvh overflow-hidden;
   }
 
-  /* Capa propia y desenfoque moderado: con uno enorme (3xl) las esquinas parpadeaban
-     cuando un video se redibuja por debajo de la barra en cada fotograma */
   nav {
-    @apply relative z-[10000] flex justify-between items-center bg-white/50 dark:bg-dark-700/50 backdrop-blur-xl transform-gpu p-2 px-5 select-none text-black dark:text-white max-sm:hidden;
+    @apply relative z-[10000] flex justify-between items-center bg-white/50 dark:bg-dark-700/50 backdrop-blur-3xl p-2 px-5 select-none text-black dark:text-white max-sm:hidden;
 
     div {
       @apply flex items-center gap-5;
@@ -759,9 +757,8 @@ body {
     }
   }
 
-  /* Sin drop-shadow: un filtro sobre el video obliga a recalcular la sombra en cada fotograma */
   #videofile {
-    @apply w-2xl absolute top-32 left-3/12 bg-white dark:bg-dark-700 shadow-2xl rounded-xl overflow-hidden;
+    @apply w-2xl absolute top-32 left-3/12 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     #window-header {
       p {
