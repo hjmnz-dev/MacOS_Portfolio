@@ -336,6 +336,62 @@ const WORK_LOCATION = {
         },
       ],
     },
+
+    // ▶ Project 4
+    {
+      id: 8,
+      name: "Cafeta",
+      icon: "/images/folder.png",
+      kind: "folder",
+      children: [
+        {
+          id: 1,
+          name: "Cafeta Project.txt",
+          icon: "/images/txt.png",
+          kind: "file",
+          fileType: "txt",
+          description: [
+            "Cafeta is a social network built for university students to share notes, resources, and campus life in one place.",
+            "Instead of scattered group chats, students get a feed organized by major, stories, real-time messaging, and notifications.",
+            "Think of it like the campus cafeteria—where everyone meets—but always open, with an admin console to keep the community safe.",
+            "It's built with React, TypeScript, and Tailwind on the front end, and NestJS, Prisma, PostgreSQL, and Socket.io on the back end, deployed on Azure.",
+          ],
+        },
+        {
+          id: 2,
+          name: "cafeta.com",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "https://cafeta-web-hj01.azurewebsites.net",
+        },
+        {
+          id: 4,
+          name: "cafeta.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          imageUrl: "/images/project-cafeta.png",
+        },
+        {
+          id: 6,
+          name: "cafeta-admin.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          imageUrl: "/images/project-cafeta-admin.png",
+        },
+        {
+          id: 7,
+          name: "cafeta.mp4",
+          icon: "/images/video.png",
+          kind: "file",
+          fileType: "video",
+          videoUrl: "/videos/cafeta.mp4",
+          poster: "/images/cafeta-video-poster.jpg",
+        },
+      ],
+    },
   ],
 };
 
@@ -469,6 +525,7 @@ const WINDOW_CONFIG = {
   terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  videofile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   music: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
