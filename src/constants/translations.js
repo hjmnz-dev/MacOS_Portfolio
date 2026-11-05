@@ -58,6 +58,15 @@ const es = {
   "It’s built with React Native, so it works smoothly on both iOS and Android with a clean, modern design.":
     "Está hecha con React Native, así que funciona con fluidez en iOS y Android, con un diseño limpio y moderno.",
 
+  "Cafeta is a social network built for university students to share notes, resources, and campus life in one place.":
+    "Cafeta es una red social pensada para estudiantes universitarios, donde comparten apuntes, recursos y la vida del campus en un solo lugar.",
+  "Instead of scattered group chats, students get a feed organized by major, stories, real-time messaging, and notifications.":
+    "En lugar de grupos de chat dispersos, los estudiantes tienen un feed organizado por carrera, historias, mensajería en tiempo real y notificaciones.",
+  "Think of it like the campus cafeteria—where everyone meets—but always open, with an admin console to keep the community safe.":
+    "Es como la cafetería del campus, donde todos se encuentran, pero siempre abierta y con una consola de administración para cuidar a la comunidad.",
+  "It's built with React, TypeScript, and Tailwind on the front end, and NestJS, Prisma, PostgreSQL, and Socket.io on the back end, deployed on Azure.":
+    "Está hecha con React, TypeScript y Tailwind en el frontend, y NestJS, Prisma, PostgreSQL y Socket.io en el backend, desplegada en Azure.",
+
   // Sobre mí
   "Meet the Developer Behind the Code": "Conoce al desarrollador detrás del código",
   "Hey! I’m Hamsell 👋, a Software Developer from Santo Domingo, Dominican Republic, focused on building practical solutions that streamline processes and deliver real business value.":
