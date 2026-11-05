@@ -771,6 +771,11 @@ body {
 
       video {
         @apply w-full max-h-[calc(100dvh-18.5rem)] object-contain;
+
+        /* Chrome deja el botón de pantalla completa desactivado: se oculta, se usa el maximizar de la ventana */
+        &::-webkit-media-controls-fullscreen-button {
+          display: none;
+        }
       }
     }
 
