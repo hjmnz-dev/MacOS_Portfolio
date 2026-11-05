@@ -43,11 +43,13 @@ const Video = () => {
         poster={poster}
         controls
         controlsList="nofullscreen"
+        // Sin imagen en imagen: Edge deja de poner su barra flotante sobre el video al pasar
+        // el mouse, que hacía destellar la barra de menú
+        disablePictureInPicture
         autoPlay
         playsInline
         preload="metadata"
         onPlay={onPlay}
-        onDoubleClick={() => toggleMaximize("videofile")}
       />}
     </div>
   </>
