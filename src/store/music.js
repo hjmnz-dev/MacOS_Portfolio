@@ -58,6 +58,8 @@ const useMusicStore = create(immer((set, get) => {
             load((currentIndex - 1 + musicTracks.length) % musicTracks.length);
         },
 
+        pause: () => audio.pause(),
+
         toggleShuffle: () => set((state) => {
             state.shuffle = !state.shuffle;
         }),

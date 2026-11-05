@@ -382,12 +382,13 @@ const WORK_LOCATION = {
           imageUrl: "/images/project-cafeta-admin.png",
         },
         {
-          id: 5,
-          name: "Design.fig",
-          icon: "/images/plain.png",
+          id: 7,
+          name: "cafeta.mp4",
+          icon: "/images/video.png",
           kind: "file",
-          fileType: "fig",
-          href: "https://www.figma.com/design/No6CC1wnzlf3TZ2j4Hatra/Cafeta-antiguamente-UniConnect-",
+          fileType: "video",
+          videoUrl: "/videos/cafeta.mp4",
+          poster: "/images/cafeta-video-poster.jpg",
         },
       ],
     },
@@ -524,6 +525,7 @@ const WINDOW_CONFIG = {
   terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  videofile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   music: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 

@@ -4,8 +4,8 @@ import { Draggable } from 'gsap/all'
 import clsx from "clsx";
 
 import { Navbar,Welcome,Dock,MobileNavbar } from "#components"
-import {Terminal, Safari,Resume, Finder, Text, Image, Contact, Photos, Music }from "#windows";
-import {MobileTerminal, MobileSafari, MobileResume, MobileFinder, MobileText, MobileImage, MobileContact, MobilePhotos, MobileMusic} from "#windows/mobile";
+import {Terminal, Safari,Resume, Finder, Text, Image, Contact, Photos, Music, Video }from "#windows";
+import {MobileTerminal, MobileSafari, MobileResume, MobileFinder, MobileText, MobileImage, MobileContact, MobilePhotos, MobileMusic, MobileVideo} from "#windows/mobile";
 import Home from "#components/Home";
 import AnimatedWallpaper from "#components/AnimatedWallpaper";
 import MobileHome from "#components/mobile/Home";
@@ -46,6 +46,8 @@ const App = () => {
       <MobileText/>
       <Image/>
       <MobileImage/>
+      <Video/>
+      <MobileVideo/>
       <Contact/>
       <MobileContact/>
       <Photos/>

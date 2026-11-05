@@ -178,7 +178,8 @@ body {
   #terminal.maximized,
   #contact.maximized,
   #txtfile.maximized,
-  #imgfile.maximized {
+  #imgfile.maximized,
+  #videofile.maximized {
     --window-header: 2.8125rem;
   }
 
@@ -756,6 +757,45 @@ body {
     }
   }
 
+  #videofile {
+    @apply w-2xl absolute top-32 left-3/12 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+
+    #window-header {
+      p {
+        @apply font-bold text-[#5f6266] dark:text-white;
+      }
+    }
+
+    .preview {
+      @apply bg-black flex items-center justify-center;
+
+      video {
+        @apply w-full max-h-[calc(100dvh-18.5rem)] object-contain;
+      }
+    }
+
+    /* En pantalla completa el video usa todo el alto disponible */
+    &.maximized .preview {
+      @apply overflow-hidden;
+
+      video {
+        @apply size-full max-h-none;
+      }
+    }
+  }
+
+  #mobile-videofile {
+    @apply w-screen h-dvh bg-white dark:bg-dark-700 select-none absolute top-0 pt-20 z-60 sm:hidden;
+
+    .preview {
+      @apply px-3 pb-5 pt-32 absolute inset-0 flex items-center justify-center;
+
+      video {
+        @apply w-full max-h-full rounded-lg bg-black object-contain;
+      }
+    }
+  }
+
   #mobile-imgfile {
     @apply w-screen h-dvh bg-white dark:bg-dark-700 select-none absolute top-0 pt-20 z-60 sm:hidden overflow-y-auto;
 
@@ -1206,6 +1246,7 @@ body {
     #mobile-resume,
     #mobile-txtfile,
     #mobile-imgfile,
+    #mobile-videofile,
     #mobile-music {
       @apply pt-13;
     }
