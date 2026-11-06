@@ -66,7 +66,7 @@ It is a single-page React application with no backend of its own. Content lives 
 
 👉 **Safari**: Shows my 3 most recent LinkedIn posts, updated automatically.
 
-👉 **Music**: A Spotify-style player with 3 licensed tracks that keeps playing in the background.
+👉 **Music**: A Spotify-style player with 4 licensed tracks that keeps playing in the background.
 
 👉 **Photos**: A gallery that opens images in a preview window.
 
@@ -171,7 +171,7 @@ No environment variables are needed. Do not expose `npm run dev` to the internet
 ## <a name="credits">🙌 Credits</a>
 
 - **Wallpaper**: Generated with AI.
-- **Music**: "Gymnopedie No. 1", "Enchanted Valley", "Lobby Time" Kevin MacLeod ([incompetech.com](https://incompetech.com)). Licensed under Creative Commons: [By Attribution 4.0 License](http://creativecommons.org/licenses/by/4.0/).
+- **Music**: "Gymnopedie No. 1", "Enchanted Valley", "Lobby Time", "Notanico Merengue" Kevin MacLeod ([incompetech.com](https://incompetech.com)). Licensed under Creative Commons: [By Attribution 4.0 License](http://creativecommons.org/licenses/by/4.0/).
 
 ## <a name="contact">📬 Contact</a>
 
