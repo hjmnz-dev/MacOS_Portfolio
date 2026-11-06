@@ -507,6 +507,7 @@ export const musicTracks = [
   { id: 1, title: "Gymnopedie No. 1", src: "/music/gymnopedie-no-1.mp3", color: "#e8a33d" },
   { id: 2, title: "Enchanted Valley", src: "/music/enchanted-valley.mp3", color: "#7c6cf0" },
   { id: 3, title: "Lobby Time", src: "/music/lobby-time.mp3", color: "#e0526f" },
+  { id: 4, title: "Notanico Merengue", src: "/music/notanico-merengue.mp3", color: "#22a7c9" },
 ];
 
 export const resumeFiles = {
