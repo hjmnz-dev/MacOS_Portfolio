@@ -1,0 +1,11 @@
+{
+  "source": "public/audio/portfolio-promo/music/notanico-merengue.mp3",
+  "out": "public/audio/portfolio-promo/music/portfolio-promo-edit.wav",
+  "bpm": 120,
+  "firstDownbeat": 0.515,
+  "segments": [
+    { "fromBar": 0, "toBar": 15, "why": "Hamsell likes the song's opening. It plays uncut from the beat of its first hit, 0.515 s, which is one beat before the measured downbeat at 1.015 s, so the Music window can show its true position" }
+  ],
+  "duration": 30,
+  "fadeOutSeconds": 1.5
+}

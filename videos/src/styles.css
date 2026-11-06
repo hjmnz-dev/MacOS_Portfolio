@@ -1,0 +1,11 @@
+/* The portfolio's own stylesheet, so the film uses its real tokens and classes */
+@import "../../src/index.css";
+
+@source "./";
+
+/* The film draws the wallpaper itself, under the camera */
+html,
+body {
+  background-image: none;
+  background-color: #000;
+}
