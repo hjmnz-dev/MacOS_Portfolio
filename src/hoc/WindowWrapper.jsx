@@ -85,7 +85,7 @@ const WindowWrapper = (Component, windowKey) => {
 
            // Estas ventanas tienen scroll o controles propios: se mueven solo desde su encabezado
            const header = el.querySelector('#window-header');
-           const trigger = ['resume', 'music', 'safari'].includes(windowKey) ? header : el;
+           const trigger = ['resume', 'music', 'safari', 'videofile'].includes(windowKey) ? header : el;
            const [instance] = Draggable.create(el,{
                trigger,
                // El orden lo lleva el store: el contador propio de GSAP hundía la ventana al pulsarla

@@ -70,8 +70,31 @@ body {
     @apply relative isolate w-dvw h-dvh overflow-hidden;
   }
 
+  /* Vidrio esmerilado sin backdrop-filter: bajo la barra solo queda la parte de arriba del fondo,
+     así que se usa una copia ya desenfocada, alineada con el fondo como si fuera "cover" de la
+     pantalla. Desenfocar en vivo hacía parpadear las esquinas en Edge mientras sonaba un video */
   nav {
-    @apply relative z-[10000] flex justify-between items-center bg-white/50 dark:bg-dark-700/50 backdrop-blur-3xl p-2 px-5 select-none text-black dark:text-white max-sm:hidden;
+    --nav-tint: rgb(255 255 255 / 0.5);
+    --wallpaper-blur: url("/images/wallpaper-caribe-blur.webp");
+    --wallpaper-ratio: 1.6;
+    --wallpaper-width: max(100dvw, calc(100dvh * var(--wallpaper-ratio)));
+
+    @apply relative z-[10000] flex justify-between items-center p-2 px-5 select-none text-black dark:text-white max-sm:hidden;
+    background-image: linear-gradient(var(--nav-tint), var(--nav-tint)), var(--wallpaper-blur);
+    background-repeat: no-repeat;
+    background-size: auto, var(--wallpaper-width) auto;
+    background-position:
+      0 0,
+      calc((100dvw - var(--wallpaper-width)) / 2) calc((100dvh - var(--wallpaper-width) / var(--wallpaper-ratio)) / 2);
+
+    @variant dark {
+      --nav-tint: rgb(30 30 30 / 0.5);
+    }
+
+    @media (max-aspect-ratio: 1/1) {
+      --wallpaper-blur: url("/images/wallpaper-caribe-mobile-blur.webp");
+      --wallpaper-ratio: 0.4614;
+    }
 
     div {
       @apply flex items-center gap-5;
@@ -771,6 +794,11 @@ body {
 
       video {
         @apply w-full max-h-[calc(100dvh-18.5rem)] object-contain;
+
+        /* Chrome deja el botón de pantalla completa desactivado: se oculta, se usa el maximizar de la ventana */
+        &::-webkit-media-controls-fullscreen-button {
+          display: none;
+        }
       }
     }
 
